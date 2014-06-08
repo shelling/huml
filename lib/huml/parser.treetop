@@ -1,0 +1,11 @@
+grammar Huml
+
+  rule top
+    .* {
+      def tokenize
+        [:static, "string"]
+      end
+    }
+  end
+
+end
