@@ -3,7 +3,7 @@ grammar Huml
   rule top
     doctype:(space "doctype " space type:([a-zA-Z1-9]*) space)? block {
       def tokenize
-        [:html, :doctype, doctype.type.text_value]
+        [:multi, [:html, :doctype, doctype.type.text_value]]
       end
     }
   end
