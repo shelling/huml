@@ -1,11 +1,19 @@
 grammar Huml
 
   rule top
-    .* {
+    doctype:(space "doctype " space type:([a-zA-Z1-9]*) space)? block {
       def tokenize
-        [:static, "string"]
+        [:html, :doctype, doctype.type.text_value]
       end
     }
+  end
+
+  rule block
+    .*
+  end
+
+  rule space
+    [ \t\r\n]*
   end
 
 end
