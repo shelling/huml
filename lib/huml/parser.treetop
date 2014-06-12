@@ -1,15 +1,23 @@
 grammar Huml
 
   rule top
-    space doctype:("doctype " space type:([a-zA-Z1-9]*) space)? block {
+    space doctype space block {
       def tokenize
-        [:multi, [:html, :doctype, doctype.type.text_value]]
+        [:multi, doctype.tokenize] unless doctype.empty?
       end
     }
   end
 
   rule block
     .*
+  end
+
+  rule doctype
+    "doctype " [ \t]* typestring:([a-zA-Z1-9]*) {
+      def tokenize
+        [:html, :doctype, typestring.text_value]
+      end
+    }
   end
 
   rule space
