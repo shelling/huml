@@ -13,7 +13,11 @@ grammar Huml
   end
 
   rule space
-    [ \t\r\n]*
+    [\s]* {
+      def tokenize
+        [:newline] if text_value =~ /[\r\n]/
+      end
+    }
   end
 
 end
