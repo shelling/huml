@@ -3,7 +3,10 @@ grammar Huml
   rule top
     space doctype space block {
       def tokenize
-        [:multi, doctype.tokenize] unless doctype.empty?
+        result = [:multi]
+        result.push(doctype.tokenize) unless doctype.empty?
+        result.push(block.tokenize) unless block.empty?
+        result
       end
     }
   end
