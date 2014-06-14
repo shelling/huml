@@ -1,7 +1,7 @@
 grammar Huml
 
   rule top
-    space doctype space block {
+    space doctype:doctype? space block:block* {
       def tokenize
         result = [:multi]
         result.push(doctype.tokenize) unless doctype.empty?
@@ -12,7 +12,7 @@ grammar Huml
   end
 
   rule block
-    .*
+    .
   end
 
   rule doctype

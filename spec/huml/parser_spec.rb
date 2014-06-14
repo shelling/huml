@@ -3,6 +3,10 @@ require "spec_helper"
 describe HumlParser do
   subject { HumlParser.new }
 
+  it "allows blank document" do
+    expect(subject.parse("  ").tokenize).to eq([:multi])
+  end
+
   it "can recognize space" do
     expect(subject.parse("\r", root: :space).tokenize).to eq([:newline])
     expect(subject.parse("\n", root: :space).tokenize).to eq([:newline])
