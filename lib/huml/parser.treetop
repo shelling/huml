@@ -10,7 +10,7 @@ grammar Huml
   end
 
   rule block
-    .
+    '%' name:[a-zA-Z1-9]+ space '{' space '}' <Block>
   end
 
   rule doctype

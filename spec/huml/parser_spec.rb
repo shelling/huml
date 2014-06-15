@@ -20,4 +20,8 @@ describe HumlParser do
     expect(subject.parse("doctype 5", root: :doctype).tokenize).to eq([:html, :doctype, "5"])
     expect(subject.parse(" doctype 5 ").tokenize).to eq([:multi, [:html, :doctype, "5"], [:multi]])
   end
+
+  it "can recognize block" do
+    expect(subject.parse("%div {}", root: :block).tokenize).to eq([:html, :tag, :div, [:multi], [:multi]])
+  end
 end
