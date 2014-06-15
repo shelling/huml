@@ -22,11 +22,7 @@ grammar Huml
   end
 
   rule space
-    [\s]* {
-      def tokenize
-        [:newline] if text_value =~ /[\r\n]/
-      end
-    }
+    [\s]* <Space>
   end
 
 end

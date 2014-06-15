@@ -10,4 +10,10 @@ module Huml
         [:multi]]
     end
   end
+
+  class Space < Treetop::Runtime::SyntaxNode
+    def tokenize
+      [:newline] if text_value =~ /[\r\n]/
+    end
+  end
 end
