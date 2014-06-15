@@ -1,12 +1,7 @@
 grammar Huml
 
   rule top
-    space doctype:doctype? space block:block* {
-      def tokenize
-        [:multi].push(doctype.empty? ? [:multi] : doctype.tokenize)
-                .push(  block.empty? ? [:multi] : block.tokenize  )
-      end
-    }
+    space doctype:doctype? space block:block* <Top>
   end
 
   rule block
@@ -14,11 +9,7 @@ grammar Huml
   end
 
   rule doctype
-    "doctype " [ \t]* typestring:([a-zA-Z1-9]*) {
-      def tokenize
-        [:html, :doctype, typestring.text_value]
-      end
-    }
+    "doctype " [ \t]* typestring:([a-zA-Z1-9]*) <Doctype>
   end
 
   rule space
