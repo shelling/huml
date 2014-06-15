@@ -4,7 +4,7 @@ describe HumlParser do
   subject { HumlParser.new }
 
   it "allows blank document" do
-    expect(subject.parse("  ").tokenize).to eq([:multi])
+    expect(subject.parse("  ").tokenize).to eq([:multi, [:multi], [:multi]])
   end
 
   it "can recognize space" do
@@ -18,6 +18,6 @@ describe HumlParser do
 
   it "can recognize doctype" do
     expect(subject.parse("doctype 5", root: :doctype).tokenize).to eq([:html, :doctype, "5"])
-    expect(subject.parse(" doctype 5 ").tokenize).to eq([:multi, [:html, :doctype, "5"]])
+    expect(subject.parse(" doctype 5 ").tokenize).to eq([:multi, [:html, :doctype, "5"], [:multi]])
   end
 end
