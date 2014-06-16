@@ -23,5 +23,6 @@ describe HumlParser do
 
   it "can recognize block" do
     expect(subject.parse("%div {}", root: :block).tokenize).to eq([:html, :tag, :div, [:multi], [:multi]])
+    expect(subject.parse("%div {}").tokenize).to eq([:multi, [:multi], [:html, :tag, :div, [:multi], [:multi]]])
   end
 end
