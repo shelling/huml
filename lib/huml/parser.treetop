@@ -1,11 +1,11 @@
 grammar Huml
 
   rule top
-    space doctype:doctype? space block:block* <Top>
+    space doctype:doctype? space html <Top>
   end
 
   rule block
-    '%' name:[a-zA-Z1-9]+ space '{' space '}' <Block>
+    '%' name:[a-zA-Z1-9]+ space '{' space '}' space <Block>
   end
 
   rule doctype
@@ -14,6 +14,10 @@ grammar Huml
 
   rule space
     [\s]* <Space>
+  end
+
+  rule html
+    block* <HTML>
   end
 
 end

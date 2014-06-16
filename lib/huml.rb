@@ -6,7 +6,7 @@ module Huml
   class Top < Treetop::Runtime::SyntaxNode
     def tokenize
       [:multi].push(doctype.empty? ? [:multi] : doctype.tokenize)
-              .push(  block.empty? ? [:multi] : block.tokenize  )
+              .concat( html.empty? ? [[:multi]] : html.tokenize )
     end
   end
 
@@ -15,6 +15,12 @@ module Huml
       [:html, :tag, name.text_value.to_sym,
         [:multi],
         [:multi]]
+    end
+  end
+
+  class HTML < Treetop::Runtime::SyntaxNode
+    def tokenize
+      elements.map { |e| e.tokenize }
     end
   end
 
