@@ -14,7 +14,7 @@ module Huml
     def tokenize
       [:html, :tag, name.text_value.to_sym,
         [:multi],
-        [:multi]]
+        [:multi].concat(html.empty? ? [] : html.tokenize)]
     end
   end
 

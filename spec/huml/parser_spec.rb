@@ -30,4 +30,12 @@ describe HumlParser do
                                                                           [:html, :tag, :div, [:multi], [:multi]],
                                                                           [:html, :tag, :div, [:multi], [:multi]]])
   end
+
+  it "recognizes blocks inside a block" do
+    expect(subject.parse("%div { %p {} %p {} }", root: :block).tokenize).to eq([:html, :tag, :div,
+                                                                                  [:multi],
+                                                                                  [:multi,
+                                                                                    [:html, :tag, :p, [:multi], [:multi]],
+                                                                                    [:html, :tag, :p, [:multi], [:multi]] ]])
+  end
 end
