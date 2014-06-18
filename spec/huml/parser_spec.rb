@@ -38,4 +38,8 @@ describe HumlParser do
                                                                                     [:html, :tag, :p, [:multi], [:multi]],
                                                                                     [:html, :tag, :p, [:multi], [:multi]] ]])
   end
+
+  it "recognizes css class list" do
+    expect(subject.parse(".foo", root: :classlist).tokenize).to eq([:html, :attr, :class, "foo"])
+  end
 end
