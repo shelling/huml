@@ -12,6 +12,10 @@ grammar Huml
     "doctype " [ \t]* typestring:([a-zA-Z1-9]*) <Doctype>
   end
 
+  rule class_list
+    ("." name:[a-zA-Z1-9-]+)* <ClassList>
+  end
+
   rule space
     [\s]* <Space>
   end

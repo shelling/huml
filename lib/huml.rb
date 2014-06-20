@@ -30,6 +30,12 @@ module Huml
     end
   end
 
+  class ClassList < Treetop::Runtime::SyntaxNode
+    def tokenize
+      elements.map { |e| [:html, :attr, :class, [:static, e.name.text_value]] }
+    end
+  end
+
   class Space < Treetop::Runtime::SyntaxNode
     def tokenize
       [:newline] if text_value =~ /[\r\n]/
