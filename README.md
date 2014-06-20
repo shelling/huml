@@ -6,5 +6,11 @@ when Haml uses indentations.
 
 ## Formatting
 
-  %html {
-  }
+    doctype html
+    %html {
+      %head {
+      }
+
+      %body {
+      }
+    }
