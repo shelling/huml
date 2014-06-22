@@ -45,4 +45,13 @@ describe HumlParser do
                                                                                 [:html, :attr, :class, [:static, "bar"]],
                                                                                 [:html, :attr, :class, [:static, "baz"]]])
   end
+
+  it "recognizes css id list" do
+    expect(subject.parse("#foo", root: :selector_list).tokenize).to eq([[:html, :attr, :id,    [:static, "foo"]]])
+  end
+
+  it "recognizes id and class list" do
+    expect(subject.parse(".foo#bar", root: :selector_list).tokenize).to eq([[:html, :attr, :class, [:static, "foo"]],
+                                                                            [:html, :attr, :id,    [:static, "bar"]]])
+  end
 end
