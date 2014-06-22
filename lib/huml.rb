@@ -30,9 +30,10 @@ module Huml
     end
   end
 
-  class ClassList < Treetop::Runtime::SyntaxNode
+  class SelectorList < Treetop::Runtime::SyntaxNode
+    TYPES = { "." => :class, "#" => :id }
     def tokenize
-      elements.map { |e| [:html, :attr, :class, [:static, e.name.text_value]] }
+      elements.map { |e| [:html, :attr, TYPES[e.type.text_value], [:static, e.name.text_value]] }
     end
   end
 

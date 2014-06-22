@@ -12,8 +12,8 @@ grammar Huml
     "doctype " [ \t]* typestring:([a-zA-Z1-9]*) <Doctype>
   end
 
-  rule class_list
-    ("." name:[a-zA-Z1-9-]+)* <ClassList>
+  rule selector_list
+    (type:[.#] name:[a-zA-Z1-9-]+)* <SelectorList>
   end
 
   rule space

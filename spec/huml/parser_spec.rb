@@ -40,9 +40,9 @@ describe HumlParser do
   end
 
   it "recognizes css class list" do
-    expect(subject.parse(".foo", root: :class_list).tokenize).to eq([[:html, :attr, :class, [:static, "foo"]]])
-    expect(subject.parse(".foo.bar.baz", root: :class_list).tokenize).to eq([[:html, :attr, :class, [:static, "foo"]],
-                                                                             [:html, :attr, :class, [:static, "bar"]],
-                                                                             [:html, :attr, :class, [:static, "baz"]]])
+    expect(subject.parse(".foo", root: :selector_list).tokenize).to eq([[:html, :attr, :class, [:static, "foo"]]])
+    expect(subject.parse(".foo.bar.baz", root: :selector_list).tokenize).to eq([[:html, :attr, :class, [:static, "foo"]],
+                                                                                [:html, :attr, :class, [:static, "bar"]],
+                                                                                [:html, :attr, :class, [:static, "baz"]]])
   end
 end
