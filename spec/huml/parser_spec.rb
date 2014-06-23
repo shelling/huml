@@ -22,21 +22,21 @@ describe HumlParser do
   end
 
   it "can recognize block" do
-    expect(subject.parse("%div {}", root: :block).tokenize).to eq([:html, :tag, :div, [:multi], [:multi]])
-    expect(subject.parse("%div {}").tokenize).to eq([:multi, [:multi], [:html, :tag, :div, [:multi], [:multi]]])
-    expect(subject.parse("%div {} %div {}", root: :html).tokenize).to eq([[:html, :tag, :div, [:multi], [:multi]],
-                                                                          [:html, :tag, :div, [:multi], [:multi]]])
+    expect(subject.parse("%div {}", root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs], [:multi]])
+    expect(subject.parse("%div {}").tokenize).to eq([:multi, [:multi], [:html, :tag, :div, [:html, :attrs], [:multi]]])
+    expect(subject.parse("%div {} %div {}", root: :html).tokenize).to eq([[:html, :tag, :div, [:html, :attrs], [:multi]],
+                                                                          [:html, :tag, :div, [:html, :attrs], [:multi]]])
     expect(subject.parse("%div {} %div {}").tokenize).to eq([:multi, [:multi],
-                                                                          [:html, :tag, :div, [:multi], [:multi]],
-                                                                          [:html, :tag, :div, [:multi], [:multi]]])
+                                                                          [:html, :tag, :div, [:html, :attrs], [:multi]],
+                                                                          [:html, :tag, :div, [:html, :attrs], [:multi]]])
   end
 
   it "recognizes blocks inside a block" do
     expect(subject.parse("%div { %p {} %p {} }", root: :block).tokenize).to eq([:html, :tag, :div,
-                                                                                  [:multi],
+                                                                                  [:html, :attrs],
                                                                                   [:multi,
-                                                                                    [:html, :tag, :p, [:multi], [:multi]],
-                                                                                    [:html, :tag, :p, [:multi], [:multi]] ]])
+                                                                                    [:html, :tag, :p, [:html, :attrs], [:multi]],
+                                                                                    [:html, :tag, :p, [:html, :attrs], [:multi]] ]])
   end
 
   it "recognizes css class list" do
