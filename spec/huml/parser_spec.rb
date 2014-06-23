@@ -54,4 +54,12 @@ describe HumlParser do
     expect(subject.parse(".foo#bar", root: :selector_list).tokenize).to eq([[:html, :attr, :class, [:static, "foo"]],
                                                                             [:html, :attr, :id,    [:static, "bar"]]])
   end
+
+  it "recognizes a block with selectors" do
+    expect(subject.parse("%div.foo#bar {}", root: :block).tokenize).to eq([:html, :tag, :div,
+                                                                            [:html, :attrs,
+                                                                              [:html, :attr, :class, [:static, "foo"]],
+                                                                              [:html, :attr, :id   , [:static, "bar"]]],
+                                                                              [:multi]])
+  end
 end

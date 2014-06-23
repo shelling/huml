@@ -5,7 +5,7 @@ grammar Huml
   end
 
   rule block
-    '%' name:[a-zA-Z1-9]+ space '{' space html space '}' space <Block>
+    '%' name:[a-zA-Z1-9]+ selector_list space '{' space html space '}' space <Block>
   end
 
   rule doctype
