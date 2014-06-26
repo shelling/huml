@@ -14,3 +14,7 @@ when Haml uses indentations.
       %body {
       }
     }
+
+## License
+
+MIT (X11) License 2014 shelling
