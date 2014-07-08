@@ -67,4 +67,8 @@ describe Huml::Parser do
     expect(subject.parse('"hello world"', root: :string).tokenize).to eq([:static, "hello world"])
     expect(subject.parse("'hello world'", root: :string).tokenize).to eq([:static, "hello world"])
   end
+
+  it "recognizes a block containing a string" do
+    expect(subject.parse('%div = "string here"', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs], [:static, "string here"]])
+  end
 end

@@ -31,6 +31,14 @@ module Huml
     end
   end
 
+  class Assignment < Treetop::Runtime::SyntaxNode
+    def tokenize
+      [:html, :tag, name.text_value.to_sym,
+        [:html, :attrs].concat(selector_list.tokenize),
+        string.tokenize]
+    end
+  end
+
   class HTML < Treetop::Runtime::SyntaxNode
     def tokenize
       elements.map { |e| e.tokenize }
