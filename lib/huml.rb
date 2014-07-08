@@ -4,6 +4,18 @@ module Huml
   require "huml/parser"
   autoload :Engine, "huml/engine"
 
+  class Parser < Treetop::Runtime::CompiledParser
+    include Huml
+
+    def initialize(options = {})
+      super()
+    end
+
+    def call(string)
+      parse(string).tokenize
+    end
+  end
+
   class Top < Treetop::Runtime::SyntaxNode
     def tokenize
       [:multi].push(doctype.empty? ? [:multi] : doctype.tokenize)

@@ -1,7 +1,7 @@
 require "spec_helper"
 
-describe HumlParser do
-  subject { HumlParser.new }
+describe Huml::Parser do
+  subject { Huml::Parser.new }
 
   it "allows blank document" do
     expect(subject.parse("  ").tokenize).to eq([:multi, [:multi], [:multi]])
