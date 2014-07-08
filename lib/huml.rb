@@ -55,4 +55,10 @@ module Huml
       [:newline] if text_value =~ /[\r\n]/
     end
   end
+
+  class String < Treetop::Runtime::SyntaxNode
+    def tokenize
+      [:static, literal.text_value]
+    end
+  end
 end

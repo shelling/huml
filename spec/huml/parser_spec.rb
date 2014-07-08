@@ -64,6 +64,6 @@ describe Huml::Parser do
   end
 
   it "recognizes a literal string" do
-    expect(subject.parse('"hello world"', root: :string).tokenize).to eq("hello world")
+    expect(subject.parse('"hello world"', root: :string).tokenize).to eq([:static, "hello world"])
   end
 end

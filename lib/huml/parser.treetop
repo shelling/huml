@@ -24,4 +24,8 @@ grammar Huml
     block* <HTML>
   end
 
+  rule string
+    '"' literal:([a-zA-Z\s]+) '"' <String>
+  end
+
 end
