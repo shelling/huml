@@ -18,6 +18,10 @@ grammar Huml
     (type:[.#] name:[a-zA-Z1-9-]+)* <SelectorList>
   end
 
+  rule pair
+    attr:([a-zA-Z1-9]+) space '=' space value:string <Pair>
+  end
+
   rule space
     [\s]* <Space>
   end

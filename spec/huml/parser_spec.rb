@@ -71,4 +71,8 @@ describe Huml::Parser do
   it "recognizes a block containing a string" do
     expect(subject.parse('%div = "string here"', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs], [:static, "string here"]])
   end
+
+  it "recognizes a pair" do
+    expect(subject.parse('src = "foo.png"', root: :pair).tokenize).to eq([:html, :attr, :src, [:static, "foo.png"]])
+  end
 end

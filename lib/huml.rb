@@ -58,6 +58,12 @@ module Huml
     end
   end
 
+  class Pair < Treetop::Runtime::SyntaxNode
+    def tokenize
+      [:html, :attr, attr.text_value.to_sym, value.tokenize]
+    end
+  end
+
   class Space < Treetop::Runtime::SyntaxNode
     def tokenize
       [:newline] if text_value =~ /[\r\n]/
