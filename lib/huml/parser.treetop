@@ -27,9 +27,9 @@ grammar Huml
   end
 
   rule string
-    '"' literal:([a-zA-Z\s]+) '"' <String>
+    '"' literal:([a-zA-Z\s\-\.]+) '"' <String>
     /
-    "'" literal:([a-zA-Z\s]+) "'" <String>
+    "'" literal:([a-zA-Z\s\-\.]+) "'" <String>
   end
 
 end
