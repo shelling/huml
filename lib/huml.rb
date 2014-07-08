@@ -58,6 +58,12 @@ module Huml
     end
   end
 
+  class Attributes < Treetop::Runtime::SyntaxNode
+    def tokenize
+      pairs.elements.map(&:tokenize)
+    end
+  end
+
   class Pair < Treetop::Runtime::SyntaxNode
     def tokenize
       [:html, :attr, attr.text_value.to_sym, value.tokenize]

@@ -75,4 +75,8 @@ describe Huml::Parser do
   it "recognizes a pair" do
     expect(subject.parse('src = "foo.png"', root: :pair).tokenize).to eq([:html, :attr, :src, [:static, "foo.png"]])
   end
+
+  it "recognizes attributes" do
+    expect(subject.parse('( src = "foo.png" alt = "foo image" )', root: :attributes).tokenize).to eq([[:html, :attr, :src, [:static, "foo.png"]], [:html, :attr, :alt, [:static, "foo image"]]])
+  end
 end
