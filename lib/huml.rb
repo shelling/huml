@@ -2,6 +2,7 @@ module Huml
   require "huml/version"
   require "treetop"
   require "huml/parser"
+  autoload :Engine, "huml/engine"
 
   class Top < Treetop::Runtime::SyntaxNode
     def tokenize
