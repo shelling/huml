@@ -1,2 +1,4 @@
 #!/usr/bin/env ruby
 require 'huml'
+
+puts eval(Huml::Engine.new.call(File.open(ARGV[0]).read))
