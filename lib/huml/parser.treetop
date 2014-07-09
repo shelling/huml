@@ -7,7 +7,7 @@ grammar Huml
   rule block
     '%' name:[a-zA-Z1-9]+ selector_list attributes:attributes? space '{' space html space '}' space <Block>
     /
-    '%' name:[a-zA-Z1-9]+ selector_list space '=' space string space <Assignment>
+    '%' name:[a-zA-Z1-9]+ selector_list attributes:attributes? space '=' space string space <Assignment>
   end
 
   rule doctype

@@ -83,4 +83,8 @@ describe Huml::Parser do
   it "recognizes a block with attributes" do
     expect(subject.parse('%div(class="foo") {}', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs, [:html, :attr, :class, [:static, "foo"]]], [:multi]])
   end
+
+  it "recognizes a assignment with attributes" do
+    expect(subject.parse('%div(class="foo") = "string here"', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs, [:html, :attr, :class, [:static, "foo"]]], [:static, "string here"]])
+  end
 end
