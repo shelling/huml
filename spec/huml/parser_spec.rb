@@ -79,4 +79,8 @@ describe Huml::Parser do
   it "recognizes attributes" do
     expect(subject.parse('( src = "foo.png" alt = "foo image" )', root: :attributes).tokenize).to eq([[:html, :attr, :src, [:static, "foo.png"]], [:html, :attr, :alt, [:static, "foo image"]]])
   end
+
+  it "recognizes a block with attributes" do
+    expect(subject.parse('%div(class="foo") {}', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs, [:html, :attr, :class, [:static, "foo"]]], [:multi]])
+  end
 end

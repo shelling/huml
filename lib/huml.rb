@@ -26,7 +26,7 @@ module Huml
   class Block < Treetop::Runtime::SyntaxNode
     def tokenize
       [:html, :tag, name.text_value.to_sym,
-        [:html, :attrs].concat(selector_list.tokenize),
+        [:html, :attrs].concat(selector_list.tokenize).concat(attributes.empty? ? [] : attributes.tokenize),
         [:multi].concat(html.empty? ? [] : html.tokenize)]
     end
   end
