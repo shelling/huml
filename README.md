@@ -11,7 +11,7 @@ when Haml uses indentations.
 
       %head {
         %script(type="text/javascript" src="app.js")
-        %link(rel="stylesheet" type="text/css" media="all")
+        %link(href="app.css" rel="stylesheet" type="text/css" media="all")
       }
 
       %body {
