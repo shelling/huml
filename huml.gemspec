@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.authors       = ['shelling']
   s.email         = ['navyblueshellingford@gmail.com']
   s.homepage      = 'https://github.com/shelling/huml'
+  s.description   = 'Huml is to Haml what Scss is to Sass'
   s.summary       = 'Huml'
 
   s.require_paths = ['lib']
