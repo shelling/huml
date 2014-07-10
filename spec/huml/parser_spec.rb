@@ -68,6 +68,14 @@ describe Huml::Parser do
     expect(subject.parse("'hello world'", root: :string).tokenize).to eq([:static, "hello world"])
   end
 
+  it "recognizes string composed of characters with hyphen" do
+    expect(subject.parse('"col-xs-6"', root: :string).tokenize).to eq([:static, "col-xs-6"])
+  end
+
+  it "recognizes string composed of characters with underscore" do
+    expect(subject.parse('"foo_bar"', root: :string).tokenize).to eq([:static, "foo_bar"])
+  end
+
   it "recognizes a block containing a string" do
     expect(subject.parse('%div = "string here"', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs], [:static, "string here"]])
   end
