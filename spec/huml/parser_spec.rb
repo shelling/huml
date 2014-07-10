@@ -76,6 +76,10 @@ describe Huml::Parser do
     expect(subject.parse('"foo_bar"', root: :string).tokenize).to eq([:static, "foo_bar"])
   end
 
+  it "recognizes a fragment of css" do
+    expect(subject.parse('"background-color: #fff;"'))
+  end
+
   it "recognizes a block containing a string" do
     expect(subject.parse('%div = "string here"', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs], [:static, "string here"]])
   end

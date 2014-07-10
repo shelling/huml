@@ -37,9 +37,9 @@ grammar Huml
   end
 
   rule string
-    '"' literal:([a-zA-Z1-9_#\-\s\.]*) '"' <String>
+    '"' literal:([a-zA-Z1-9_!@#$%:;/\-\s\.]*) '"' <String>
     /
-    "'" literal:([a-zA-Z1-9_#\-\s\.]*) "'" <String>
+    "'" literal:([a-zA-Z1-9_!@#$%:;/\-\s\.]*) "'" <String>
   end
 
 end
