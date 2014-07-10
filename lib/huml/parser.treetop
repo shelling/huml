@@ -9,7 +9,7 @@ grammar Huml
     /
     '%' name:[a-zA-Z0-9]+ selector_list attributes:attributes? space '=' space string space <Assignment>
     /
-    '%' name:[a-zA-Z0-9]+ selector_list attributes:attributes? <Atom>
+    '%' name:[a-zA-Z0-9]+ selector_list attributes:attributes? space <Atom>
   end
 
   rule doctype
