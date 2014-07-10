@@ -5,19 +5,19 @@ grammar Huml
   end
 
   rule block
-    '%' name:[a-zA-Z1-9]+ selector_list attributes:attributes? space '{' space html space '}' space <Block>
+    '%' name:[a-zA-Z0-9]+ selector_list attributes:attributes? space '{' space html space '}' space <Block>
     /
-    '%' name:[a-zA-Z1-9]+ selector_list attributes:attributes? space '=' space string space <Assignment>
+    '%' name:[a-zA-Z0-9]+ selector_list attributes:attributes? space '=' space string space <Assignment>
     /
-    '%' name:[a-zA-Z1-9]+ selector_list attributes:attributes? <Atom>
+    '%' name:[a-zA-Z0-9]+ selector_list attributes:attributes? <Atom>
   end
 
   rule doctype
-    "doctype " [ \t]* typestring:([a-zA-Z1-9]*) <Doctype>
+    "doctype " [ \t]* typestring:([a-zA-Z0-9]*) <Doctype>
   end
 
   rule selector_list
-    (type:[.#] name:[a-zA-Z1-9-]+)* <SelectorList>
+    (type:[.#] name:[a-zA-Z0-9-]+)* <SelectorList>
   end
 
   rule attributes
@@ -25,7 +25,7 @@ grammar Huml
   end
 
   rule pair
-    attr:([a-zA-Z1-9]+) space '=' space value:string space <Pair>
+    attr:([a-zA-Z0-9]+) space '=' space value:string space <Pair>
   end
 
   rule space
@@ -37,9 +37,9 @@ grammar Huml
   end
 
   rule string
-    '"' literal:([a-zA-Z1-9_!@#$%:;/\-\s\.]*) '"' <String>
+    '"' literal:([a-zA-Z0-9_!@#$%:;/\-\s\.]*) '"' <String>
     /
-    "'" literal:([a-zA-Z1-9_!@#$%:;/\-\s\.]*) "'" <String>
+    "'" literal:([a-zA-Z0-9_!@#$%:;/\-\s\.]*) "'" <String>
   end
 
 end
