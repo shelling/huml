@@ -12,7 +12,11 @@ module Huml
     end
 
     def call(string)
-      parse(string).tokenize
+      if result = parse(string)
+        result.tokenize
+      else
+        raise Exception, self.failure_reason
+      end
     end
   end
 
