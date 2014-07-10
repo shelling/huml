@@ -1,0 +1,25 @@
+%html {
+
+  %head {
+    %script(type="text/javascript" src="app.js")
+  }
+
+  %body {
+    %div.main.container {
+
+      %div.header = "page header"
+
+      %h3 {
+        %span = "article title"
+
+        %a.close {
+          %i.icon.remove
+        }
+      }
+
+      %p.foo.bar(style="background-color: #fff; margin-left: 20px;") = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+
+    }
+  }
+
+}
