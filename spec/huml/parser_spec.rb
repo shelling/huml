@@ -87,4 +87,17 @@ describe Huml::Parser do
   it "recognizes a assignment with attributes" do
     expect(subject.parse('%div(class="foo") = "string here"', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs, [:html, :attr, :class, [:static, "foo"]]], [:static, "string here"]])
   end
+
+  it "recognizes a atomic element" do
+    expect(subject.parse('%div', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs]])
+    expect(subject.parse('%div()', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs]])
+    expect(subject.parse('%div(class="foo")', root: :block).tokenize).to eq([:html, :tag, :div,
+                                                                              [:html, :attrs,
+                                                                                [:html, :attr, :class, [:static, "foo"]]]])
+    expect(subject.parse('%div.foo#bar(role="sidebar")', root: :block).tokenize).to eq([:html, :tag, :div,
+                                                                                          [:html, :attrs,
+                                                                                            [:html, :attr, :class, [:static, "foo"]],
+                                                                                            [:html, :attr, :id, [:static, "bar"]],
+                                                                                            [:html, :attr, :role, [:static, "sidebar"]]]])
+  end
 end

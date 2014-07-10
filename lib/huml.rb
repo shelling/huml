@@ -39,6 +39,13 @@ module Huml
     end
   end
 
+  class Atom < Treetop::Runtime::SyntaxNode
+    def tokenize
+      [:html, :tag, name.text_value.to_sym,
+        [:html, :attrs].concat(selector_list.tokenize).concat(attributes.empty? ? [] : attributes.tokenize)]
+    end
+  end
+
   class HTML < Treetop::Runtime::SyntaxNode
     def tokenize
       elements.map { |e| e.tokenize }
