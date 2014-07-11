@@ -76,6 +76,10 @@ describe Huml::Parser do
     expect(subject.parse('"foo_bar"', root: :string).tokenize).to eq([:static, "foo_bar"])
   end
 
+  it "recognizes UTF-8 characters" do
+    expect(subject.parse('"中文嘛也通"', root: :string).tokenize).to eq([:static, "中文嘛也通"])
+  end
+
   it "recognizes a fragment of css" do
     expect(subject.parse('"background-color: #fff;"'))
   end
