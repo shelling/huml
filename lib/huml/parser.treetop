@@ -33,7 +33,7 @@ grammar Huml
   end
 
   rule html
-    block* <HTML>
+    ( block / string )* <HTML>
   end
 
   rule string
