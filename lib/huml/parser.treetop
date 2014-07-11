@@ -42,4 +42,8 @@ grammar Huml
     "'" literal:([^']*) "'" space <String>
   end
 
+  rule code
+    space "-" space code:([^\n]*) [\r\n] space <Code>
+  end
+
 end

@@ -92,4 +92,10 @@ module Huml
       [:static, literal.text_value]
     end
   end
+
+  class Code < Treetop::Runtime::SyntaxNode
+    def tokenize
+      [:code, code.text_value]
+    end
+  end
 end

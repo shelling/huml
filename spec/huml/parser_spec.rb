@@ -120,4 +120,8 @@ describe Huml::Parser do
   it "recognizes multiple atomic elements" do
     expect(subject.parse("%div()\n%div()", root: :html).tokenize).to eq([[:html, :tag, :div, [:html, :attrs]], [:html, :tag, :div, [:html, :attrs]]])
   end
+
+  it "recognizes code" do
+    expect(subject.parse("  - @var.each do |item| \n", root: :code).tokenize).to eq([:code, "@var.each do |item| "])
+  end
 end
