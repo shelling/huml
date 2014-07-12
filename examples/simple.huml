@@ -1,3 +1,4 @@
+doctype 5
 %html {
 
   %head {
@@ -16,6 +17,10 @@
           %i.icon.remove
         }
       }
+
+      - for item in %w(hello world shelling)
+        %div.item = "this is #{item}"
+      - end
 
       %p.foo.bar(style="background-color: #fff; margin-left: 20px;") = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
 

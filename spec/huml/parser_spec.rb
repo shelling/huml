@@ -124,4 +124,13 @@ describe Huml::Parser do
   it "recognizes code" do
     expect(subject.parse("  - @var.each do |item| \n", root: :code).tokenize).to eq([:code, "@var.each do |item| "])
   end
+
+  it "recognizes embeded code" do
+template = <<TEMPLATE
+- @var.each do |item|
+  "variable #\{item\} here.\n"
+- end
+TEMPLATE
+    expect(subject.parse(template, root: :html).tokenize).to eq([[:code, '@var.each do |item|'], [:dynamic, "\"variable \#{item} here.\n\""], [:code, 'end']])
+  end
 end
