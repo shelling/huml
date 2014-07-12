@@ -87,7 +87,13 @@ module Huml
     end
   end
 
-  class String < Treetop::Runtime::SyntaxNode
+  class Dynamic < Treetop::Runtime::SyntaxNode
+    def tokenize
+      [:dynamic, "\"#{literal.text_value}\""]
+    end
+  end
+
+  class Static < Treetop::Runtime::SyntaxNode
     def tokenize
       [:static, literal.text_value]
     end

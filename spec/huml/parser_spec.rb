@@ -64,53 +64,53 @@ describe Huml::Parser do
   end
 
   it "recognizes a literal string" do
-    expect(subject.parse('"hello world"', root: :string).tokenize).to eq([:static, "hello world"])
+    expect(subject.parse('"hello world"', root: :string).tokenize).to eq([:dynamic, '"hello world"'])
     expect(subject.parse("'hello world'", root: :string).tokenize).to eq([:static, "hello world"])
   end
 
   it "recognizes string composed of characters with hyphen" do
-    expect(subject.parse('"col-xs-6"', root: :string).tokenize).to eq([:static, "col-xs-6"])
+    expect(subject.parse("'col-xs-6'", root: :string).tokenize).to eq([:static, "col-xs-6"])
   end
 
   it "recognizes string composed of characters with underscore" do
-    expect(subject.parse('"foo_bar"', root: :string).tokenize).to eq([:static, "foo_bar"])
+    expect(subject.parse("'foo_bar'", root: :string).tokenize).to eq([:static, "foo_bar"])
   end
 
   it "recognizes UTF-8 characters" do
-    expect(subject.parse('"中文嘛也通"', root: :string).tokenize).to eq([:static, "中文嘛也通"])
+    expect(subject.parse("'中文嘛也通'", root: :string).tokenize).to eq([:static, "中文嘛也通"])
   end
 
   it "recognizes a fragment of css" do
-    expect(subject.parse('"background-color: #fff;"'))
+    expect(subject.parse("'background-color: #fff;'", root: :string).tokenize).to eq([:static, "background-color: #fff;"])
   end
 
   it "recognizes a block containing a string" do
-    expect(subject.parse('%div = "string here"', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs], [:static, "string here"]])
+    expect(subject.parse("%div = 'string here'", root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs], [:static, "string here"]])
   end
 
   it "recognizes a pair" do
-    expect(subject.parse('src = "foo.png"', root: :pair).tokenize).to eq([:html, :attr, :src, [:static, "foo.png"]])
+    expect(subject.parse("src = 'foo.png'", root: :pair).tokenize).to eq([:html, :attr, :src, [:static, "foo.png"]])
   end
 
   it "recognizes attributes" do
-    expect(subject.parse('( src = "foo.png" alt = "foo image" )', root: :attributes).tokenize).to eq([[:html, :attr, :src, [:static, "foo.png"]], [:html, :attr, :alt, [:static, "foo image"]]])
+    expect(subject.parse("( src = 'foo.png' alt = 'foo image' )", root: :attributes).tokenize).to eq([[:html, :attr, :src, [:static, "foo.png"]], [:html, :attr, :alt, [:static, "foo image"]]])
   end
 
   it "recognizes a block with attributes" do
-    expect(subject.parse('%div(class="foo") {}', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs, [:html, :attr, :class, [:static, "foo"]]], [:multi]])
+    expect(subject.parse("%div(class='foo') {}", root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs, [:html, :attr, :class, [:static, "foo"]]], [:multi]])
   end
 
   it "recognizes a assignment with attributes" do
-    expect(subject.parse('%div(class="foo") = "string here"', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs, [:html, :attr, :class, [:static, "foo"]]], [:static, "string here"]])
+    expect(subject.parse("%div(class='foo') = 'string here'", root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs, [:html, :attr, :class, [:static, "foo"]]], [:static, "string here"]])
   end
 
   it "recognizes a atomic element" do
     expect(subject.parse('%div', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs]])
     expect(subject.parse('%div()', root: :block).tokenize).to eq([:html, :tag, :div, [:html, :attrs]])
-    expect(subject.parse('%div(class="foo")', root: :block).tokenize).to eq([:html, :tag, :div,
+    expect(subject.parse("%div(class='foo')", root: :block).tokenize).to eq([:html, :tag, :div,
                                                                               [:html, :attrs,
                                                                                 [:html, :attr, :class, [:static, "foo"]]]])
-    expect(subject.parse('%div.foo#bar(role="sidebar")', root: :block).tokenize).to eq([:html, :tag, :div,
+    expect(subject.parse("%div.foo#bar(role='sidebar')", root: :block).tokenize).to eq([:html, :tag, :div,
                                                                                           [:html, :attrs,
                                                                                             [:html, :attr, :class, [:static, "foo"]],
                                                                                             [:html, :attr, :id, [:static, "bar"]],

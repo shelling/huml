@@ -37,9 +37,9 @@ grammar Huml
   end
 
   rule string
-    '"' literal:([^"]*) '"' space <String>
+    '"' literal:([^"]*) '"' space <Dynamic>
     /
-    "'" literal:([^']*) "'" space <String>
+    "'" literal:([^']*) "'" space <Static>
   end
 
   rule code
