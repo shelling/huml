@@ -18,6 +18,37 @@ to compile it to HTML.
 
 ## Formatting
 
+The most basic element of Huml is a similar to Haml.
+
+    %tagname(attr1='value1' attr2='value2') = 'Content'
+
+Adding `class` and `id` attributes uses the same syntax as the CSS too.
+
+    %tagname#id.class
+
+If the element contains inner elements, you can use curly brace to wrap it
+
+    %ul {
+      %li = 'Salt'
+      %li = 'Pepper'
+    }
+
+becomes
+
+    <ul>
+      <li>Salt</li>
+      <li>Pepper</li>
+    </ul>
+
+You can also put plain text as a child of an element:
+
+    %p {
+      'Hello,'
+      'World!'
+    }
+
+## An Example
+
     doctype 5
     %html {
 
