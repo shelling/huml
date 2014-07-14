@@ -47,6 +47,19 @@ You can also put plain text as a child of an element:
       'World!'
     }
 
+It's also possible to embed Ruby code into Haml documents. A hyphen, `-`, will run the code but not output the result.
+You can even use control statements like if and while:
+
+    %p {
+      'Date/Time:'
+      - now = DateTime.now
+      %strong = "#{now}"
+
+      - if now > DateTime.parse("December 31, 2006")
+        'Happy new year!'
+      - end
+    }
+
 ## An Example
 
     doctype 5
