@@ -1,0 +1,6 @@
+
+
+0.0.2   Mon Jul 14 11:26:46 CST 2014
+        - Parser can recognize embed code
+        - Parser can distinguish double quote string which allows interpolation
+        - Parser can distinguish single quote string which doesn't allow interpolation
