@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    huml (0.0.1)
+    huml (0.0.2)
       temple
       treetop
 
@@ -23,7 +23,7 @@ GEM
     rspec-mocks (3.0.1)
       rspec-support (~> 3.0.0)
     rspec-support (3.0.0)
-    temple (0.6.7)
+    temple (0.6.8)
     treetop (1.5.3)
       polyglot (~> 0.3)
 
