@@ -43,7 +43,11 @@ grammar Huml
   end
 
   rule code
-    space "-" space code:([^\n]*) [\r\n] space <Code>
+    space "-" space code:([^\n]*) ([\r\n] / eof ) space <Code>
+  end
+
+  rule eof
+    !.
   end
 
 end

@@ -133,4 +133,8 @@ template = <<TEMPLATE
 TEMPLATE
     expect(subject.parse(template, root: :html).tokenize).to eq([[:code, '@var.each do |item|'], [:dynamic, "\"variable \#{item} here.\n\""], [:code, 'end']])
   end
+
+  it "allow embeded code in last line" do
+    expect(subject.parse("- for i in 1..5\n  \"#\{i\}\"\n- end", root: :html).tokenize).to eq([[:code, "for i in 1..5"], [:dynamic, "\"\#{i}\""], [:code, "end"]])
+  end
 end
