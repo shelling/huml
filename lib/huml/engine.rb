@@ -1,5 +1,3 @@
-require "temple"
-
 module Huml
   class Engine < ::Temple::Engine
     use Huml::Parser

@@ -1,8 +1,10 @@
 module Huml
   require "huml/version"
   require "treetop"
+  require "temple"
   require "huml/parser"
   autoload :Engine, "huml/engine"
+  autoload :Template, "huml/template"
 
   class Parser < Treetop::Runtime::CompiledParser
     include Huml
