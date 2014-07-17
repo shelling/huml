@@ -60,6 +60,24 @@ You can even use control statements like if and while:
       - end
     }
 
+Like strings in Ruby, double quote strings allow interpolation and single quote strings don't.
+
+    - @var = "string"
+    "here is a #{@var}"
+
+becomes
+
+    here is a string
+
+And
+
+    - @var = "string"
+    'no a string. #{@var}'
+
+becomes
+
+    not a string. #{@var}
+
 ## An Example
 
     doctype 5
