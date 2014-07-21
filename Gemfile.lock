@@ -3,6 +3,7 @@ PATH
   specs:
     huml (0.0.2)
       temple
+      tilt
       treetop
 
 GEM
@@ -24,6 +25,7 @@ GEM
       rspec-support (~> 3.0.0)
     rspec-support (3.0.0)
     temple (0.6.8)
+    tilt (2.0.1)
     treetop (1.5.3)
       polyglot (~> 0.3)
 
